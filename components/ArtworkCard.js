@@ -8,6 +8,7 @@ export default function ArtworkCard({ objectID }) {
   const { data, error, isLoading } = useSWR(
     `https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectID}`
   );
+  
 
   if (error || !data) {
     return <Error statusCode={404} />;

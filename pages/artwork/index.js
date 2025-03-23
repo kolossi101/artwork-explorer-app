@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import { Pagination } from 'react-bootstrap';
 import ArtworkCard from '@/components/ArtworkCard';
+import validObjectIDList from '@/public/data/validObjectIDList.json';
 
 const PER_PAGE = 12;
 
@@ -36,9 +37,12 @@ export default function Artwork() {
 
   useEffect(() => {
     if (data) {
+      let filteredResults = validObjectIDList.objectIDs.filter((x) =>
+        data.objectIDs?.includes(x)
+      );
       const results = [];
-      for (let i = 0; i < data?.objectIDs?.length; i += PER_PAGE) {
-        const chunk = data?.objectIDs.slice(i, i + PER_PAGE);
+      for (let i = 0; i < filteredResults.length; i += PER_PAGE) {
+        const chunk = filteredResults.slice(i, i + PER_PAGE);
         results.push(chunk);
       }
       setArtworkList(results);
@@ -49,7 +53,6 @@ export default function Artwork() {
   if (error) {
     return <Error statusCode={404} />;
   }
-  console.log('Error:', error);
 
   if (artworkList === null || artworkList === undefined) {
     return null;

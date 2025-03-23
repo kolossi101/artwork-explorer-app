@@ -3,10 +3,35 @@ import Error from 'next/error';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
+import { useAtom } from 'jotai';
+import { favouritesAtom } from '../store';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 export default function ArtworkCardDetail({ objectID }) {
+  const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
+  const [showAdded, setShowAdded] = useState(favouritesList.includes(objectID));
+
+  useEffect(() => {
+    setShowAdded(favouritesList.includes(objectID));
+  }, [favouritesList, objectID]);
+
+  function favouritesClicked() {
+    if (showAdded) {
+      console.log('Removing from favourites:', objectID);
+      setFavouritesList((current) => current.filter((fav) => fav != objectID));
+    } else {
+      console.log('Adding to favourites:', objectID);
+      setFavouritesList((current) => [...current, objectID]);
+    }
+
+    setShowAdded(!showAdded);
+  }
+
   const { data, error, isLoading } = useSWR(
-    `https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectID}`
+    objectID
+      ? `https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectID}`
+      : null
   );
 
   if (error || !data) {
@@ -16,6 +41,7 @@ export default function ArtworkCardDetail({ objectID }) {
       </>
     );
   }
+
   return (
     <>
       <Card>
@@ -65,6 +91,14 @@ export default function ArtworkCardDetail({ objectID }) {
             <br />
             <strong>Dimensions: </strong>
             {data.dimensions ? data.dimensions : 'N/A'}
+            <br />
+            <br />
+            <Button
+              variant={showAdded ? 'primary' : 'outline-primary'}
+              onClick={favouritesClicked}
+            >
+              + Favourite {showAdded ? '(added)' : ''}
+            </Button>
             <br />
             <br />
             <Link href={`/artwork/${data.objectID}`} passHref>
