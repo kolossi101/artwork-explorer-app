@@ -28,7 +28,6 @@ export default function MainNav() {
       setUserName(tokenStored.userName);
     }
   }, [router.pathname]);
-  // and solve cors error with vercel for user api
 
   function logout() {
     setIsExpanded(false);
