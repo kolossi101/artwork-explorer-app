@@ -7,22 +7,24 @@ import { useAtom } from 'jotai';
 import { favouritesAtom } from '../store';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { addToFavourites } from '@/lib/userData';
+import { removeFromFavourites } from '@/lib/userData';
 
 export default function ArtworkCardDetail({ objectID }) {
   const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
-  const [showAdded, setShowAdded] = useState(favouritesList.includes(objectID));
+  const [showAdded, setShowAdded] = useState(false);
 
   useEffect(() => {
-    setShowAdded(favouritesList.includes(objectID));
+    setShowAdded(favouritesList?.includes(objectID));
   }, [favouritesList, objectID]);
 
-  function favouritesClicked() {
+  async function favouritesClicked() {
     if (showAdded) {
       console.log('Removing from favourites:', objectID);
-      setFavouritesList((current) => current.filter((fav) => fav != objectID));
+      setFavouritesList(await removeFromFavourites(objectID));
     } else {
       console.log('Adding to favourites:', objectID);
-      setFavouritesList((current) => [...current, objectID]);
+      setFavouritesList(await addToFavourites(objectID));
     }
 
     setShowAdded(!showAdded);

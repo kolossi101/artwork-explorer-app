@@ -6,22 +6,21 @@ import Row from 'react-bootstrap/Row';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import styles from '@/styles/History.module.css';
+import { removeFromHistory } from '@/lib/userData';
 
 export default function History() {
   const router = useRouter();
   const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
 
+  if (!searchHistory) return null;
+
   function historyClicked(e, index) {
     router.push(`/artwork?${searchHistory[index]}`);
   }
 
-  function removeHistoryClicked(e, index) {
+  async function removeHistoryClicked(e, index) {
     e.stopPropagation();
-    setSearchHistory((current) => {
-      let x = [...current];
-      x.splice(index, 1);
-      return x;
-    });
+    setSearchHistory(await removeFromHistory(searchHistory[index]));
   }
 
   let parsedHistory = [];

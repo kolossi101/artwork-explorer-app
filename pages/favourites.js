@@ -13,6 +13,8 @@ export default function Favourites() {
     console.log('Updated favouritesList:', favouritesList);
   }, [favouritesList, setFavouritesList]);
 
+  if (!favouritesList) return null;
+
   return (
     <>
       <Row className="gy-4 d-flex justify-content-center">
