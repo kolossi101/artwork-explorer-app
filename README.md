@@ -1,40 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Artwork Explorer
 
-## Getting Started
+This project is a web application built with [Next.js](https://nextjs.org) that allows users to explore artwork from the Metropolitan Museum of Art's collection. It includes features such as user authentication, artwork search, and the ability to manage favorites and search history.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Authentication
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Login and Registration**: Users can create an account and log in to access personalized features.
+- **JWT-based Authentication**: Secure authentication using JSON Web Tokens (JWT).
+- **Route Guarding**: Protects private routes and redirects unauthorized users to the login page.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Artwork Search
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- **Advanced Search**: Search for artwork using various filters such as medium, highlights, and on-view status.
+- **Pagination**: Browse search results with pagination for better navigation.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+### Favorites and History
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Favorites Management**: Add or remove artworks from a personalized favorites list.
+- **Search History**: Keep track of previous searches for quick access.
 
-## Learn More
+### Artwork Details
 
-To learn more about Next.js, take a look at the following resources:
+- **Detailed View**: View detailed information about individual artworks, including images, artist information, and dimensions.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## Pages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Public Pages
 
-## Deploy on Vercel
+- **Home**: Introduction to the application and its features.
+- **Login**: User login page.
+- **Register**: User registration page.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Private Pages
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+- **Search**: Advanced search functionality for exploring artwork.
+- **Favorites**: View and manage a list of favorite artworks.
+- **History**: View and manage search history.
+
+## Technologies Used
+
+- **Frontend**: React, Next.js, React Bootstrap
+- **State Management**: Jotai
+- **API Integration**: Fetch API for communication with the backend
+- **Authentication**: JWT-based authentication
+- **Styling**: Bootstrap and custom CSS
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/kolossi101/artwork-explorer-app
+   cd artwork-explorer-app
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env` file in the root directory and add the following:
+
+   ```env
+   NEXT_PUBLIC_API_URL=<your-api-url>/api/user
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Environment Variables
+
+- **`NEXT_PUBLIC_API_URL`**: The base URL of the API used for authentication, registration, and user data.
+
+## Project Structure
+
+- **`/components`**: Reusable React components such as `MainNav`, `ArtworkCard`, and `RouteGuard`.
+- **`/lib`**: Utility functions for authentication and user data management.
+- **`/pages`**: Next.js pages for routing.
+- **`/store`**: Jotai atoms for state management.
+- **`/public`**: Static assets and data files.
+
+## Key Files
+
+- **`lib/authenticate.js`**: Handles user authentication and token management.
+- **`lib/userData.js`**: Manages user-specific data like favorites and search history.
+- **`components/RouteGuard.js`**: Protects private routes.
+- **`pages/login.js`**: Login page.
+- **`pages/register.js`**: Registration page.
+- **`pages/search.js`**: Advanced search page.
+- **`pages/favourites.js`**: Favorites management page.
+- **`pages/history.js`**: Search history page.
+
+## Deployment
+
+This project can be deployed on [Vercel](https://vercel.com) for production. Follow the [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+
+## Acknowledgments
+
+- Data sourced from the [Metropolitan Museum of Art Collection API](https://metmuseum.github.io/).
+- Built as part of the BTI425 course assignment.
+
+---
+
+**Author**: Nadiia Geras  
+**Date**: April 13, 2025  
+**Link**: [Live Application](#)
