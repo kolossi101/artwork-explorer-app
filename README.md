@@ -67,6 +67,8 @@ This project is a web application built with [Next.js](https://nextjs.org) that 
    NEXT_PUBLIC_API_URL=<your-api-url>/api/user
    ```
 
+   Please refer to [artwork-explorer-user-api](https://github.com/kolossi101/artwork-explorer-user-api) for an example of building User API.
+
 4. Start the development server:
 
    ```bash
