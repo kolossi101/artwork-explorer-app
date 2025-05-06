@@ -111,4 +111,4 @@ This project can be deployed on [Vercel](https://vercel.com) for production. Fol
 
 **Author**: Nadiia Geras  
 **Date**: April 13, 2025  
-**Link**: [Live Application](#)
+**Link**: [Live Application](https://bti425-project06-my-app.vercel.app/)
