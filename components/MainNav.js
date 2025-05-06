@@ -59,7 +59,7 @@ export default function MainNav() {
         expanded={isExpanded}
       >
         <Container>
-          <Navbar.Brand>Nadiia Geras</Navbar.Brand>
+          <Navbar.Brand>Metropolitan Museum Artwork Explorer</Navbar.Brand>
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
             onClick={handleToggle}
