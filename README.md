@@ -2,6 +2,8 @@
 
 This project is a web application built with [Next.js](https://nextjs.org) that allows users to explore artwork from the Metropolitan Museum of Art's collection. It includes features such as user authentication, artwork search, and the ability to manage favorites and search history.
 
+https://github.com/user-attachments/assets/1db3e0ae-637f-442c-a440-aa92a10550f9
+
 ## Features
 
 ### Authentication
